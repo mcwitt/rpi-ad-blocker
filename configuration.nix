@@ -51,17 +51,19 @@ in
       servers = lib.concatLists [ cloudflare google ];
 
       extraConfig =
-        let hostsUrl = "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/dnsmasq/dnsmasq.blacklist.txt";
+        let hostsUrl = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
         in ''
           domain-needed
           bogus-priv
           no-resolv
           no-poll
-          cache-size=10000
           log-queries
-          log-facility=${dnsmasqLog}
+
+          cache-size=10000
           local-ttl=300
-          conf-file=${builtins.fetchurl hostsUrl}
+          log-facility=${dnsmasqLog}
+
+          addn-hosts=${builtins.fetchurl hostsUrl}
         '';
     };
 
