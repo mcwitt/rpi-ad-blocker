@@ -51,7 +51,7 @@ in
       servers = lib.concatLists [ cloudflare google ];
 
       extraConfig =
-        let hostsUrl = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";
+        let hostsUrl = "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/dnsmasq/dnsmasq.blacklist.txt";
         in ''
           domain-needed
           bogus-priv
@@ -63,7 +63,7 @@ in
           local-ttl=300
           log-facility=${dnsmasqLog}
 
-          addn-hosts=${builtins.fetchurl hostsUrl}
+          conf-file=${builtins.fetchurl hostsUrl}
         '';
     };
 
