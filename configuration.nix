@@ -23,7 +23,10 @@ in
 
   environment.systemPackages = [ pkgs.vim ];
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "without-password";
+  };
 
   system.stateVersion = "22.05";
 
