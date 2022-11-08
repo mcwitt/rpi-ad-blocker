@@ -1,5 +1,5 @@
 # https://nixos.wiki/wiki/NixOS_on_ARM#Installation
-{ lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 let dnsmasqLog = "/var/log/dnsmasq.log";
 in
@@ -50,21 +50,19 @@ in
       enable = true;
       servers = lib.concatLists [ cloudflare google ];
 
-      extraConfig =
-        let hostsUrl = "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/dnsmasq/dnsmasq.blacklist.txt";
-        in ''
-          domain-needed
-          bogus-priv
-          no-resolv
-          no-poll
-          log-queries
+      extraConfig = ''
+        domain-needed
+        bogus-priv
+        no-resolv
+        no-poll
+        log-queries
 
-          cache-size=10000
-          local-ttl=300
-          log-facility=${dnsmasqLog}
+        cache-size=10000
+        local-ttl=300
+        log-facility=${dnsmasqLog}
 
-          conf-file=${builtins.fetchurl hostsUrl}
-        '';
+        conf-file=${inputs.hosts-blocklists}/dnsmasq/dnsmasq.blacklist.txt
+      '';
     };
 
   services.logrotate = {
@@ -78,4 +76,6 @@ in
 
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
