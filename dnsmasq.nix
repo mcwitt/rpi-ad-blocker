@@ -49,7 +49,12 @@ in
     settings.dnsmasq = {
       enable = true;
       files = [ logfile ];
+      rotate = 5;
       frequency = "daily";
+
+      # required for dnsmasq to update logfile inode; otherwise will
+      # keep writing to archived log
+      postrotate = "systemctl restart dnsmasq.service";
     };
   };
 }
