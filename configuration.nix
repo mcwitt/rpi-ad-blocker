@@ -80,6 +80,11 @@ in
   networking.firewall.allowedTCPPorts = [ 53 ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix.settings.trusted-public-keys = [ "golem:ccFn2QC8Jpctrhlv6Z7SCXYJnvl1eJcvWpLb9tJ/Gck=" ];
