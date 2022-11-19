@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ lib, pkgs, ... }:
 let logfile = "/var/log/dnsmasq.log";
 in
 {
@@ -40,7 +40,7 @@ in
         local-ttl=300
         log-facility=${logfile}
 
-        conf-file=${inputs.hosts-blocklists}/dnsmasq/dnsmasq.blacklist.txt
+        conf-file=${pkgs.blocked-hosts}
       '';
     };
 
