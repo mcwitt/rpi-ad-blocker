@@ -10,7 +10,7 @@
   outputs = inputs @ { self, nixpkgs, ... }: {
 
     overlay = final: _: {
-      sanitize-blocklist = final.haskellPackages.callPackage ./sanitize-blocklist.nix { };
+      sanitize-blocklist = final.haskellPackages.callPackage ./sanitize-blocklist { };
 
       blocked-hosts = final.runCommand "blocked-hosts" { } ''
         ${final.sanitize-blocklist} < ${inputs.hosts-blocklists}/dnsmasq/dnsmasq.blacklist.txt > $out
