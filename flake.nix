@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     hosts-blocklists = {
       url = "github:notracking/hosts-blocklists";
       flake = false;
