@@ -1,13 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    flake-utils.url = "github:numtide/flake-utils";
     hosts-blocklists = {
       url = "github:notracking/hosts-blocklists";
       flake = false;
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, ... }: {
+  outputs = inputs @ { self, nixpkgs, flake-utils, ... }: {
 
     overlay = final: _: {
       sanitize-blocklist = final.haskellPackages.callPackage ./sanitize-blocklist { };
@@ -25,17 +26,22 @@
       ];
       specialArgs = { inherit inputs; };
     };
-  } // (
+  } // flake-utils.lib.eachDefaultSystem (system:
     let
-      system = "x86_64-linux";
-
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ self.overlay ];
       };
     in
-    {
-      packages.${system} = { inherit (pkgs) blocked-hosts sanitize-blocklist; };
-    }
-  );
+    rec {
+      packages = { inherit (pkgs) blocked-hosts sanitize-blocklist; };
+
+      devShells.default = pkgs.mkShell {
+        inputsFrom = [ packages.sanitize-blocklist ];
+        packages = with pkgs; [
+          haskellPackages.haskell-language-server
+          ormolu
+        ];
+      };
+    });
 }
