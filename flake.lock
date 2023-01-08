@@ -3,11 +3,11 @@
     "hosts-blocklists": {
       "flake": false,
       "locked": {
-        "lastModified": 1672525274,
-        "narHash": "sha256-t2aY8NC+lst4ceA1kb9wgcAGLRol4nYypDMMJDVfcUE=",
+        "lastModified": 1673074578,
+        "narHash": "sha256-WLp7Wud/FPG3X6f6LpIbKsWDxh6RJMU8PKqgLoLan8w=",
         "owner": "notracking",
         "repo": "hosts-blocklists",
-        "rev": "7b84b494ed28bfed4504759324b4ddabc0da9df4",
+        "rev": "37a1e98e4125ba0ed866d76b8722013245da6ada",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1672350804,
-        "narHash": "sha256-jo6zkiCabUBn3ObuKXHGqqORUMH27gYDIFFfLq5P4wg=",
+        "lastModified": 1672953546,
+        "narHash": "sha256-oz757DnJ1ITvwyTovuwG3l9cX6j9j6/DH9eH+cXFJmc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "677ed08a50931e38382dbef01cba08a8f7eac8f6",
+        "rev": "a518c77148585023ff56022f09c4b2c418a51ef5",
         "type": "github"
       },
       "original": {
