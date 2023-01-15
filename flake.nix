@@ -27,6 +27,8 @@
     in
     rec {
       packages = rec {
+        default = blocked-hosts;
+
         sanitize-blocklist = pkgs.haskellPackages.callPackage ./sanitize-blocklist { };
 
         blocked-hosts = pkgs.runCommand "blocked-hosts" { } ''
