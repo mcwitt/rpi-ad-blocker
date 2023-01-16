@@ -10,7 +10,7 @@
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
-  networking.hostName = "pinto";
+  networking.hostName = "rpi3";
 
   time.timeZone = "America/Los_Angeles";
 

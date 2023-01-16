@@ -10,18 +10,21 @@
   };
 
   outputs =
-    inputs @ { self
+    { self
     , nixpkgs
     , flake-utils
     , pre-commit-hooks
     , ...
-    }: {
+    } @ inputs: {
 
-      nixosConfigurations.pinto = nixpkgs.lib.nixosSystem rec {
+      nixosConfigurations.rpi3 = nixpkgs.lib.nixosSystem rec {
         system = "aarch64-linux";
-        modules = [ ./configuration.nix ];
+        modules = [ self.nixosModules.default ];
         specialArgs = { inherit (self.packages.${system}) blocked-hosts; };
       };
+
+      nixosModules.default = import ./configuration.nix;
+
     } // flake-utils.lib.eachDefaultSystem (system:
     let pkgs = nixpkgs.legacyPackages.${system};
     in
@@ -39,9 +42,11 @@
       checks = {
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
-          excludes = [ "hardware-configuration\\.nix" ];
           hooks = {
-            nixpkgs-fmt.enable = true;
+            nixpkgs-fmt = {
+              enable = true;
+              excludes = [ "hardware-configuration\\.nix" ];
+            };
           };
         };
       };
