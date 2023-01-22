@@ -19,7 +19,7 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "without-password";
+    permitRootLogin = "prohibit-password";
   };
 
   system.stateVersion = "22.11";
