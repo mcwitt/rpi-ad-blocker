@@ -21,15 +21,19 @@
         system = "aarch64-linux";
         modules = [
           self.nixosModules.default
-          {
+          ({ pkgs, ... }: {
+            environment.systemPackages = [ pkgs.vim ];
+            i18n.defaultLocale = "en_US.UTF-8";
             networking.hostName = "rpi3";
             nix.settings.trusted-public-keys = [ "golem:ccFn2QC8Jpctrhlv6Z7SCXYJnvl1eJcvWpLb9tJ/Gck=" ];
+            system.stateVersion = "22.11";
+            time.timeZone = "America/Los_Angeles";
 
             users.users.matt = {
               isNormalUser = true;
               extraGroups = [ "wheel" ];
             };
-          }
+          })
         ];
         specialArgs = { inherit (self.packages.${system}) blocked-hosts; };
       };
