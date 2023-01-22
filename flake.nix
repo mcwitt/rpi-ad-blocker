@@ -17,9 +17,20 @@
     , ...
     } @ inputs: {
 
-      nixosConfigurations.rpi3 = nixpkgs.lib.nixosSystem rec {
+      nixosConfigurations.rpi-ad-blocker = nixpkgs.lib.nixosSystem rec {
         system = "aarch64-linux";
-        modules = [ self.nixosModules.default ];
+        modules = [
+          self.nixosModules.default
+          {
+            networking.hostName = "rpi3";
+            nix.settings.trusted-public-keys = [ "golem:ccFn2QC8Jpctrhlv6Z7SCXYJnvl1eJcvWpLb9tJ/Gck=" ];
+
+            users.users.matt = {
+              isNormalUser = true;
+              extraGroups = [ "wheel" ];
+            };
+          }
+        ];
         specialArgs = { inherit (self.packages.${system}) blocked-hosts; };
       };
 
