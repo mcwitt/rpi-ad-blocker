@@ -14,7 +14,7 @@
     , nixpkgs
     , flake-utils
     , pre-commit-hooks
-    , ...
+    , hosts-blocklists
     } @ inputs: {
 
       nixosConfigurations.rpi-ad-blocker = nixpkgs.lib.nixosSystem rec {
@@ -50,7 +50,7 @@
         sanitize-blocklist = pkgs.haskellPackages.callPackage ./sanitize-blocklist { };
 
         blocked-hosts = pkgs.runCommand "blocked-hosts" { } ''
-          ${sanitize-blocklist} < ${inputs.hosts-blocklists}/dnsmasq/dnsmasq.blacklist.txt > $out
+          ${sanitize-blocklist} < ${hosts-blocklists}/dnsmasq/dnsmasq.blacklist.txt > $out
         '';
       };
 
@@ -64,7 +64,7 @@
             };
           };
         };
-      };
+      } // packages;
 
       devShells.default = pkgs.mkShell {
         inputsFrom = [ packages.sanitize-blocklist ];
@@ -72,7 +72,7 @@
           haskellPackages.haskell-language-server
           ormolu
         ];
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        inherit (checks.pre-commit-check) shellHook;
       };
     });
 }
