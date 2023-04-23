@@ -73,11 +73,11 @@
     "hosts-blocklists": {
       "flake": false,
       "locked": {
-        "lastModified": 1681555298,
-        "narHash": "sha256-ep9XBfJU+9WvjDbVYF0ryqID/LjBNukr+UXEXoL2Fjw=",
+        "lastModified": 1682160172,
+        "narHash": "sha256-56ycdoUzClY9gd8ApYssXmlbkIs1XF3/UwssOG6Gl0E=",
         "owner": "notracking",
         "repo": "hosts-blocklists",
-        "rev": "4089c2ba5dfa3d4e22b9c97e646f6f5a507f42bb",
+        "rev": "2c2c3e0749232595f3a3f9e1ad3151e53644d303",
         "type": "github"
       },
       "original": {
@@ -88,11 +88,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1681482634,
-        "narHash": "sha256-cT/nr3L8khEYZSGp8qqwxFH+/q4/547MfyOdSj6MhBk=",
+        "lastModified": 1682134069,
+        "narHash": "sha256-TnI/ZXSmRxQDt2sjRYK/8j8iha4B4zP2cnQCZZ3vp7k=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fda0d99c2cbbb5c89d8855d258cb0821bd9113ad",
+        "rev": "fd901ef4bf93499374c5af385b2943f5801c0833",
         "type": "github"
       },
       "original": {
@@ -143,11 +143,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1681413034,
-        "narHash": "sha256-/t7OjNQcNkeWeSq/CFLYVBfm+IEnkjoSm9iKvArnUUI=",
+        "lastModified": 1681831107,
+        "narHash": "sha256-pXl3DPhhul9NztSetUJw2fcN+RI3sGOYgKu29xpgnqw=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "d3de8f69ca88fb6f8b09e5b598be5ac98d28ede5",
+        "rev": "b7ca8f6fff42f6af75c17f9438fed1686b7d855d",
         "type": "github"
       },
       "original": {
